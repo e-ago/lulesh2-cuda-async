@@ -1,0 +1,138 @@
++ local A=0
++ local B=0
++ local C=1
++ local D=0
++ local NP=8
++ local COMM=1
++ local ASYNC=1
++ shift 7
++ local 'PAR=-s 60 -i 170'
++ date
+mar 29 nov 2016, 11.43.54, GMT
++ tee -a run.log
++ echo
+
++ mpirun -x COMM_ENABLE_DEBUG=0 -x COMM_USE_COMM=1 -x COMM_USE_ASYNC=1 -x COMM_USE_GPU_COMM=0 -x COMM_USE_GDRDMA -x MP_ENABLE_DEBUG=0 -x GDS_ENABLE_DEBUG=0 -x ENABLE_DEBUG_MSG=0 -x GDS_CQ_MAP_SMART=0 -x MLX5_DEBUG_MASK=0 -x MLX5_FREEZE_ON_ERROR_CQE=0 -x MP_DBREC_ON_GPU=0 -x MP_RX_CQ_ON_GPU=0 -x MP_TX_CQ_ON_GPU=0 -x MP_EVENT_ASYNC=0 -x MP_GUARD_PROGRESS=1 -x MP_ENABLE_WARN -x MP_DBREC_ON_GPU=0 -x GDS_DISABLE_WRITE64=1 -x GDS_SIMULATE_WRITE64=0 -x GDS_DISABLE_INLINECOPY=0 -x GDS_ENABLE_WEAK_CONSISTENCY=1 -x GDS_DISABLE_MEMBAR=0 -x CUDA_VISIBLE_DEVICES=0 -x CUDA_DISABLE_UNIFIED_MEMORY=0 --mca btl_openib_want_cuda_gdr 1 --map-by node -np 8 -mca btl_openib_warn_default_gid_prefix 0 /home/hpcagos1/peersync/src/scripts/wrapper.sh /home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170
+[tesla71:41332] Warning: could not find environment variable "COMM_USE_GDRDMA"
+[tesla71:41332] Warning: could not find environment variable "MP_ENABLE_WARN"
+# tesla71: picking GPU:0/ CPU: HCA:
+# tesla71: picking GPU:0/ CPU: HCA:
+# tesla71: picking GPU:0/ CPU: HCA:
+# tesla71: picking GPU:0/ CPU: HCA:
+# tesla71: picking GPU:0/ CPU: HCA:
+# tesla71: picking GPU:0/ CPU: HCA:
+# tesla71: picking GPU:0/ CPU: HCA:
+# tesla71: picking GPU:0/ CPU: HCA:
+[tesla75:33850] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla71:41393] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla72:38138] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla74:26746] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla76:24843] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla77:30873] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla73:15411] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla78:06985] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+Host tesla73 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[15411] [2] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla75 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[33850] [4] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla71 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla76 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[41393] [0] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla74 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla77 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[24843] [5] MP WARN mp_init() GUARD_PROGRESS enabled
+[26746] [3] MP WARN mp_init() GUARD_PROGRESS enabled
+[30873] [6] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla78 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[6985] [7] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla72 using GPU 0: Tesla K20c
+[38138] [1] MP WARN mp_init() GUARD_PROGRESS enabled
+WARNING: enabling Comm-based communications
+
+***comBufSize: 134224 totSize: 1073792***
+Alloc timer buffers numPeers+1: 8
+comm_use_comm
+WARNING: enabling GPUDirect Async for communications
+comm_use_async
+pdreqs alloc n_dreqs: 512
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+Running until t=0.010000, Problem size=60x60x60
+[41393] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[41393] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[41393] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[26746] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[24843] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[6985] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[33850] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[30873] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[15411] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[38138] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[41393] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[15411] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[38138] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[26746] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[24843] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[6985] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[33850] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[30873] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[30873] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[15411] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[38138] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[26746] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[24843] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[6985] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[33850] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[15411] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[38138] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[26746] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[24843] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[6985] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[33850] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[30873] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[41393] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[38138] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[26746] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[24843] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[6985] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[33850] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[30873] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[15411] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+   Used Memory         =  196.2500 Mb
+Run completed:  
+   Problem size        =  60 
+   MPI tasks           =  8 
+   Iteration count     =  170 
+   Final Origin Energy = 5.841176e+07 
+   Testing Plane 0 of Energy Array on rank 0:
+        MaxAbsDiff   = 3.725290e-09
+        TotalAbsDiff = 2.413223e-08
+        MaxRelDiff   = 1.340491e-11
+
+
+Elapsed time         =       0.86 (s)
+Grind time (us/z/c)  = 0.023428159 (per dom)  (0.0029285199 overall)
+FOM                  =  341469.43 (z/s)
+
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
++ date
+mar 29 nov 2016, 11.43.58, GMT
