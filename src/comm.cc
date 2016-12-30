@@ -107,9 +107,9 @@ static comm_request_t ready_requests[MAX_REQS];
 static comm_request_t timer_recv_requests[MAX_REQS];
 static comm_request_t timer_send_requests[MAX_REQS];
 
-static comm_reg_t * recv_region[80]; //26*3
-static comm_reg_t * send_region[80];
-static comm_reg_t * send_stream_region[80];
+static comm_reg_t * recv_region[MAX_REGIONS]; 
+static comm_reg_t * send_region[MAX_REGIONS];
+static comm_reg_t * send_stream_region[MAX_REGIONS];
 
 static comm_reg_t * timer_recv_region[1];
 static comm_reg_t * timer_send_region[1];
@@ -797,6 +797,8 @@ int comm_regions_setup(int numReq, int type)
     if(comm_rank == 0)
         printf("COMM SETUP %d REGIONS TYPE %d\n", numReq, type);
 #endif
+
+    assert(numReq < MAX_REGIONS);
 
     if(type == RECV_REGION)
     {
@@ -1596,7 +1598,7 @@ int comm_global_wait_all_stream(MPI_Request *request, MPI_Status *status, int co
     else
         ret = MPI_Waitall(count, request, status);
 
-    return ret;\
+    return ret;
 }
 
 void comm_setup_buf_maxsize(int comBufSize)

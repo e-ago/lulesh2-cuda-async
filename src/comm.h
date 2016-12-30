@@ -48,7 +48,7 @@ typedef struct comm_dev_descs *comm_dev_descs_t;
 #define TIMER_SEND_REGION 5
 
 #define MAX_REQS 65536
-
+#define MAX_REGIONS 80 //26*3
 
 #ifdef __cplusplus
 extern "C" {
