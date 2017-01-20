@@ -1,0 +1,33 @@
+[tesla23:13712] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla24:19612] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla25:23999] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla27:06447] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla30:27684] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla26:06296] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla29:45332] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla28:13969] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+Host tesla23 using GPU 0: Tesla K20c
+Host tesla28 using GPU 1: Tesla K20c
+Host tesla27 using GPU 0: Tesla K20c
+Host tesla29 using GPU 0: Tesla K20c
+Host tesla25 using GPU 0: Tesla K20c
+Host tesla30 using GPU 1: Tesla K20c
+Host tesla24 using GPU 1: Tesla K20c
+Host tesla26 using GPU 1: Tesla K20c
+Running until t=0.010000, Problem size=60x60x60
+   Used Memory         =  195.2500 Mb
+Run completed:  
+   Problem size        =  60 
+   MPI tasks           =  8 
+   Iteration count     =  20 
+   Final Origin Energy = 2.803434e+08 
+   Testing Plane 0 of Energy Array on rank 0:
+        MaxAbsDiff   = 7.450581e-09
+        TotalAbsDiff = 7.844315e-09
+        MaxRelDiff   = 7.586108e-13
+
+
+Elapsed time         =       0.13 (s)
+Grind time (us/z/c)  = 0.030423148 (per dom)  (0.0038028935 overall)
+FOM                  =  262957.66 (z/s)
+

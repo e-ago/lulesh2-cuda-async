@@ -1,0 +1,810 @@
++ local A=0
++ local B=0
++ local C=1
++ local D=0
++ local NP=64
++ local COMM=1
++ local ASYNC=1
++ shift 7
++ local 'PAR=-s 60 -i 170'
++ date
+mar 13 dic 2016, 21.02.44, GMT
++ tee -a run.log
++ echo
+
++ mpirun -x COMM_ENABLE_DEBUG=0 -x COMM_USE_COMM=1 -x COMM_USE_ASYNC=1 -x COMM_USE_GPU_COMM=0 -x COMM_USE_GDRDMA -x MP_ENABLE_DEBUG=0 -x GDS_ENABLE_DEBUG=0 -x ENABLE_DEBUG_MSG=0 -x GDS_CQ_MAP_SMART=0 -x MLX5_DEBUG_MASK=0 -x MLX5_FREEZE_ON_ERROR_CQE=0 -x MP_DBREC_ON_GPU=0 -x MP_RX_CQ_ON_GPU=0 -x MP_TX_CQ_ON_GPU=0 -x MP_EVENT_ASYNC=0 -x MP_GUARD_PROGRESS=1 -x MP_ENABLE_WARN -x MP_DBREC_ON_GPU=0 -x GDS_DISABLE_WRITE64=1 -x GDS_SIMULATE_WRITE64=0 -x GDS_DISABLE_INLINECOPY=0 -x GDS_ENABLE_WEAK_CONSISTENCY=1 -x GDS_DISABLE_MEMBAR=0 -x CUDA_VISIBLE_DEVICES=0 -x CUDA_DISABLE_UNIFIED_MEMORY=0 --mca btl_openib_want_cuda_gdr 1 --map-by node -np 64 -mca btl_openib_warn_default_gid_prefix 0 /home/hpcagos1/peersync/src/scripts/wrapper.sh /home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170
+[tesla9:32756] Warning: could not find environment variable "COMM_USE_GDRDMA"
+[tesla9:32756] Warning: could not find environment variable "MP_ENABLE_WARN"
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+# tesla9: picking GPU:0/ CPU: HCA:
+[tesla9:32790] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla11:08079] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla17:27525] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla49:07099] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla13:02534] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla10:30182] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla92:37614] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla96:17488] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla19:20140] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla18:14435] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla21:03940] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla108:38531] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla94:44318] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla98:09375] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla84:32211] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla15:13286] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla105:31091] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla52:32504] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla16:29866] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla82:17098] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla54:23417] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla22:20671] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla20:13665] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla14:43739] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla90:33359] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla110:43720] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla79:38221] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla114:01494] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla104:04292] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla101:40615] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla89:49036] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla48:00448] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla107:41105] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla111:40582] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla102:28371] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla87:26967] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla117:13074] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla23:32682] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla118:32858] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla12:22210] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla119:21783] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla83:36971] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla80:36794] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla88:11725] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla53:28674] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla91:47535] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla50:01874] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla112:07928] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla113:13305] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla103:06129] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla78:38727] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla116:13828] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla109:20381] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla51:03359] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla95:46787] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla86:35225] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla106:37431] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla81:29737] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla85:11965] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla100:05432] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla99:26344] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla115:47541] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+[tesla97:47140] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+# tesla9: picking GPU:0/ CPU: HCA:
+[tesla93:23336] mca: base: component_find: unable to open /usr/local/Cluster-Apps/openmpi/gnu/1.10.3/lib/openmpi/mca_mtl_psm: libpsm_infinipath.so.1: cannot open shared object file: No such file or directory (ignored)
+Host tesla49 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[8079] [2] MP WARN mp_init() GUARD_PROGRESS enabled
+[7099] [16] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla11 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla19 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[20140] [10] MP WARN mp_init() GUARD_PROGRESS enabled
+[32504] [19] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla52 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[13286] [6] MP WARN mp_init() GUARD_PROGRESS enabled
+[13074] [61] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla15 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla117 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla13 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla107 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla116 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[2534] [4] MP WARN mp_init() GUARD_PROGRESS enabled
+[13828] [60] MP WARN mp_init() GUARD_PROGRESS enabled
+[41105] [51] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla9 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla111 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[32790] [0] MP WARN mp_init() GUARD_PROGRESS enabled
+[37614] [36] MP WARN mp_init() GUARD_PROGRESS enabled
+[1874] [17] MP WARN mp_init() GUARD_PROGRESS enabled
+[40582] [55] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla88 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla106 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla92 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla50 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla115 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[11725] [32] MP WARN mp_init() GUARD_PROGRESS enabled
+[37431] [50] MP WARN mp_init() GUARD_PROGRESS enabled
+[47541] [59] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla102 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[28371] [46] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla12 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla101 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[3359] [18] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla14 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla81 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla51 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[22210] [3] MP WARN mp_init() GUARD_PROGRESS enabled
+[40615] [45] MP WARN mp_init() GUARD_PROGRESS enabled
+[29737] [25] MP WARN mp_init() GUARD_PROGRESS enabled
+[43739] [5] MP WARN mp_init() GUARD_PROGRESS enabled
+[14435] [9] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla18 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[27525] [8] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla10 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla109 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla17 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[30182] [1] MP WARN mp_init() GUARD_PROGRESS enabled
+[20381] [53] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla21 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[3940] [12] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla96 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[17488] [40] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla54 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla103 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[23417] [21] MP WARN mp_init() GUARD_PROGRESS enabled
+[36971] [27] MP WARN mp_init() GUARD_PROGRESS enabled
+[33359] [34] MP WARN mp_init() GUARD_PROGRESS enabled
+[6129] [47] MP WARN mp_init() GUARD_PROGRESS enabled
+[26967] [31] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla83 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla87 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla90 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla89 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[49036] [33] MP WARN mp_init() GUARD_PROGRESS enabled
+[29866] [7] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla112 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[7928] [56] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla16 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla98 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[9375] [42] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla113 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla79 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[13305] [57] MP WARN mp_init() GUARD_PROGRESS enabled
+[44318] [38] MP WARN mp_init() GUARD_PROGRESS enabled
+[38221] [23] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla22 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla114 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla94 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[20671] [13] MP WARN mp_init() GUARD_PROGRESS enabled
+[28674] [20] MP WARN mp_init() GUARD_PROGRESS enabled
+[1494] [58] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla53 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[448] [15] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla48 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla95 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[46787] [39] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla97 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[47140] [41] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla118 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[32858] [62] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla104 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla119 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[4292] [48] MP WARN mp_init() GUARD_PROGRESS enabled
+[21783] [63] MP WARN mp_init() GUARD_PROGRESS enabled
+[32211] [28] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla84 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla20 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[13665] [11] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla82 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[17098] [26] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla85 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[11965] [29] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla105 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla78 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla23 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[38727] [22] MP WARN mp_init() GUARD_PROGRESS enabled
+[31091] [49] MP WARN mp_init() GUARD_PROGRESS enabled
+[32682] [14] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla100 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[5432] [44] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla108 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[38531] [52] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla80 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[36794] [24] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla110 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[43720] [54] MP WARN mp_init() GUARD_PROGRESS enabled
+[35225] [30] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla86 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[26344] [43] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla99 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[23336] [37] MP WARN mp_init() GUARD_PROGRESS enabled
+Host tesla93 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+Host tesla91 using GPU 0: Tesla K20c
+WARNING: enabling Comm-based communications
+[47535] [35] MP WARN mp_init() GUARD_PROGRESS enabled
+
+***comBufSize: 134224 totSize: 1073792***
+Alloc timer buffers numPeers+1: 64
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+comm_use_comm
+WARNING: enabling GPUDirect Async for communications
+comm_use_async
+pdreqs alloc n_dreqs: 512
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+WARNING: enabling GPUDirect Async for communications
+Running until t=0.010000, Problem size=60x60x60
+[32790] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[32790] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[32790] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[32790] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[41105] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[29737] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[8079] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[37614] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[3359] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[31091] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[1874] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[26967] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[32504] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[47140] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[23417] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[47535] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[17488] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[11725] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[35225] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[46787] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[36794] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[448] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[17098] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[28674] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[5432] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[7099] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[26344] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[49036] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[44318] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[33359] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[36971] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[11965] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[38221] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[32211] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[9375] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[23336] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[43720] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[38531] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[20381] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[32858] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[40582] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[29866] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[13305] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[7928] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[13828] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[1494] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[13074] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[20671] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[47541] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[28371] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[43739] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[37431] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[20140] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[32682] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[22210] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[14435] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[27525] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[30182] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[38727] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[6129] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[21783] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[3940] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[40615] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[13286] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[4292] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[13665] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[2534] GDS INFO  gds_enable_write64() GDS_DISABLE_WRITE64=1
+[26344] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[49036] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[44318] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[33359] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[36971] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[38221] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[32211] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[23336] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[43720] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[40582] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[29866] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[13305] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[7928] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[13828] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[1494] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[13074] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[20671] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[47541] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[28371] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[43739] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[37431] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[20140] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[32682] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[22210] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[27525] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[30182] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[38727] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[6129] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[21783] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[3940] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[40615] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[13286] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[4292] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[13665] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[41105] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[29737] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[8079] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[3359] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[31091] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[1874] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[26967] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[32504] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[47140] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[23417] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[47535] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[17488] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[11725] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[36794] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[448] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[17098] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[28674] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[5432] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[7099] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[32790] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[43739] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[37431] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[20140] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[32682] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[22210] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[14435] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[27525] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[30182] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[38727] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[6129] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[21783] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[3940] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[40615] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[13286] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[4292] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[13665] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[2534] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[41105] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[29737] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[8079] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[37614] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[3359] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[31091] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[1874] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[26967] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[32504] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[47140] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[23417] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[47535] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[17488] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[11725] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[35225] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[46787] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[36794] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[448] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[17098] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[28674] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[5432] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[7099] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[26344] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[49036] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[44318] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[33359] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[36971] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[11965] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[38221] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[32211] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[9375] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[23336] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[43720] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[38531] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[20381] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[32858] GDS INFO  gds_enable_inlcpy() GDS_DISABLE_INLINECOPY=0
+[40582] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[29866] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[13305] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[7928] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[13828] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[1494] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[13074] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[20671] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[47541] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[28371] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[5432] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[7099] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[26344] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[49036] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[44318] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[33359] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[36971] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[11965] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[38221] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[32211] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[9375] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[23336] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[43720] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[38531] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[20381] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[32858] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[40582] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[29866] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[13305] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[7928] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[13828] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[1494] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[13074] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[20671] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[47541] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[28371] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[43739] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[37431] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[20140] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[32682] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[14435] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[27525] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[30182] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[38727] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[6129] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[21783] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[3940] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[40615] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[13286] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[4292] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[13665] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[2534] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[41105] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[29737] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[8079] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[37614] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[3359] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[32504] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[47535] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[17488] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[35225] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[46787] GDS INFO  gds_simulate_write64() GDS_SIMULATE_WRITE64=0
+[36794] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[448] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[17098] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[32682] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[22210] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[14435] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[27525] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[30182] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[38727] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[6129] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[21783] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[3940] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[40615] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[13286] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[4292] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[13665] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[2534] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[41105] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[29737] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[8079] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[37614] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[3359] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[31091] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[26967] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[32504] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[47140] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[47535] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[17488] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[11725] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[35225] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[46787] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[36794] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[448] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[17098] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[5432] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[7099] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[26344] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[49036] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[44318] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[33359] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[36971] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[11965] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[38221] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[32211] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[9375] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[23336] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[43720] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[38531] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[20381] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[32858] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[40582] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[29866] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[13305] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[7928] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[13828] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[1494] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[13074] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[20671] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[47541] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[28371] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[43739] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[37431] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[20140] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[47140] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[23417] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[11725] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[35225] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[46787] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[28674] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[11965] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[9375] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[38531] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[20381] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[32858] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[22210] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[14435] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[2534] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[37614] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[31091] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[1874] GDS INFO  gds_enable_membar() GDS_DISABLE_MEMBAR=0
+[26967] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[1874] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[23417] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+[28674] GDS INFO  gds_cq_map_smart() GDS_CQ_MAP_SMART env 0
+   Used Memory         =  196.2500 Mb
+Run completed:  
+   Problem size        =  60 
+   MPI tasks           =  64 
+   Iteration count     =  170 
+   Final Origin Energy = 4.672940e+08 
+   Testing Plane 0 of Energy Array on rank 0:
+        MaxAbsDiff   = 2.607703e-08
+        TotalAbsDiff = 1.881619e-07
+        MaxRelDiff   = 1.041043e-11
+
+
+Elapsed time         =       1.21 (s)
+Grind time (us/z/c)  = 0.032834014 (per dom)  (0.00051303147 overall)
+FOM                  =  1949198.2 (z/s)
+
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
+/home/hpcagos1/peersync/src/lulesh-cuda-async/src/lulesh -s 60 -i 170  
++ date
+mar 13 dic 2016, 21.03.01, GMT
