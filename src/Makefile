@@ -3,6 +3,7 @@ CC=g++
 LD=nvcc 
 #-m64
 
+MPI_INCLUDE= -I$(MPI_HOME)/include
 MP_INCLUDE= -I$(PREFIX)/include
 MP_LIB= -L$(PREFIX)/lib -lmp -lgdsync -lgdrapi -libverbs 
 
@@ -34,18 +35,18 @@ allocator.o: allocator.cu vector.h
 	$(CUDACC) $(CUDACFLAGS) -I$(CUDAINCLUDEDIR) -I./ allocator.cu
 
 lulesh.o: lulesh.cu util.h vector.h allocator.h
-	$(CUDACC) $(CUDACFLAGS) -I$(CUDAINCLUDEDIR) -I./ ${MP_INCLUDE} lulesh.cu
+	$(CUDACC) $(CUDACFLAGS) -I$(CUDAINCLUDEDIR) -I./ ${MPI_INCLUDE} ${MP_INCLUDE} lulesh.cu
 
 lulesh-comms.o: lulesh-comms.cu
-	$(CUDACC) $(CUDACFLAGS) -I$(CUDAINCLUDEDIR) -I./ ${MP_INCLUDE} lulesh-comms.cu
+	$(CUDACC) $(CUDACFLAGS) -I$(CUDAINCLUDEDIR) -I./ ${MPI_INCLUDE} ${MP_INCLUDE} lulesh-comms.cu
 
 lulesh-comms-gpu.o: lulesh-comms-gpu.cu
-	$(CUDACC) $(CUDACFLAGS) -I$(CUDAINCLUDEDIR) -I./ ${MP_INCLUDE} lulesh-comms-gpu.cu
+	$(CUDACC) $(CUDACFLAGS) -I$(CUDAINCLUDEDIR) -I./ ${MPI_INCLUDE} ${MP_INCLUDE} lulesh-comms-gpu.cu
 
 #	$(NVCC) $(FLAGS) allocator.cu -I ./ -c -o allocator.o
 
 .cc.o:; 
-	$(CC) $(CFLAGS) ${MP_INCLUDE} -I$(CUDAINCLUDEDIR) $< -o $@
+	$(CC) $(CFLAGS) ${MPI_INCLUDE} ${MP_INCLUDE} -I$(CUDAINCLUDEDIR) $< -o $@
 
 #.cu.o:;
 #	$(CUDACC) $(CFLAGS) $(CUDACFLAGS) -I$(CUDAINCLUDEDIR) $< -o $@
