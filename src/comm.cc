@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <assert.h>
 #include <errno.h>
-//#include <mpi.h>
 #include <cuda_runtime.h>
 #include "mp.h"
 #include "comm.h"
@@ -107,9 +106,9 @@ static comm_request_t ready_requests[MAX_REQS];
 static comm_request_t timer_recv_requests[MAX_REQS];
 static comm_request_t timer_send_requests[MAX_REQS];
 
-static comm_reg_t * recv_region[MAX_REGIONS]; 
-static comm_reg_t * send_region[MAX_REGIONS];
-static comm_reg_t * send_stream_region[MAX_REGIONS];
+static comm_reg_t * recv_region[80]; //26*3
+static comm_reg_t * send_region[80];
+static comm_reg_t * send_stream_region[80];
 
 static comm_reg_t * timer_recv_region[1];
 static comm_reg_t * timer_send_region[1];
@@ -798,8 +797,6 @@ int comm_regions_setup(int numReq, int type)
         printf("COMM SETUP %d REGIONS TYPE %d\n", numReq, type);
 #endif
 
-    assert(numReq < MAX_REGIONS);
-
     if(type == RECV_REGION)
     {
         for(int index=0; index < numReq; index++)
@@ -1255,33 +1252,6 @@ err:
     return ret;
 }
 
-int comm_gpu_prepare_waitall(int count)
-{
-    int retcode;
-    int ret = 0;
-    
-    assert(comm_initialized);
-    mp_request_t * req = (mp_request_t *)&(timer_recv_requests[first_timer_recv_request]);
-    for (int i=0; i < count; ++i) {
-       /* if(comm_rank == 0)
-            printf("comm_gpu_prepare_waitall, count=%d, first_timer_recv_request: %d i: %d, req=%p\n", 
-                count, first_timer_recv_request, i, (req+i));
-*/
-        retcode = mp::mlx5::get_descriptors(&(pdreqs[indexGpuReqs].wait[i]), req+i);
-        if (retcode) {
-            comm_err("error in get_descriptors(wait) (%d)\n", retcode);
-            ret = -1;
-            goto out;
-        }
-
-        pdreqs[indexGpuReqs].n_wait++;
-    }
-    first_timer_recv_request += count;
-    //memset(creqs, 0, sizeof(comm_request_t)*count);
-out:
-    return ret;
-}
-
 int comm_prepare_wait_all(int count, comm_request_t *creqs)
 {
     int retcode;
@@ -1351,122 +1321,6 @@ int comm_global_irecv(void *buf, int count, MPI_Datatype datatype,
     else
         ret = MPI_Irecv(buf, count, datatype, source, tag, comm, request);
 
-    return ret;
-}
-
-int comm_gpu_irecv(void *recv_buf, int count,  MPI_Datatype type, int src_rank)
-{
-    int ret=0;
-#if 0
-    if(comm_rank == 0)
-    {
-       if(datatype == MPI_DOUBLE)
-            printf("Recv from %d, index req: %d byte: %d sizeof(DOUBLE): %d\n",
-             source, index, 8*count, sizeof(datatype));
-
-        if(datatype == MPI_FLOAT)
-            printf("Recv from %d, index req: %d byte: %d sizeof(FLOAT): %d\n",
-             source, index, 4*count, sizeof(datatype));
-
-    }
-#endif
-
-    if(comm_use_comm())
-    {   
-        indexTimerRecv = indexTimerRecv%MAX_REQS;
-/*
-        if(comm_rank == 0)
-            printf("indexTimerRecv: %d, indexGpuReqs: %d src_rank: %d req=%p\n", 
-                indexTimerRecv, indexGpuReqs, src_rank, &(timer_recv_requests[indexTimerRecv]));
-*/
-        comm_irecv(recv_buf, count, 
-            type, timer_recv_region[0], src_rank, 
-            &(timer_recv_requests[indexTimerRecv])
-        );
-        indexTimerRecv++;
-    }
-    
-    return ret;
-}
-
-void comm_gpu_update_index()
-{
-    indexGpuReqs++;
-}
-
-struct comm_dev_descs comm_gpu_return_descr()
-{
-    return pdreqs[indexGpuReqs];
-}
-
-int comm_setup_gpu_prepare_isend(void *send_buf, int count, MPI_Datatype type, int dest_rank, int index)
-{
-    indexTimerSend = indexTimerSend%MAX_REQS;
- /*
-    if(comm_rank == 0)
-        printf("indexTimerSend: %d dest_rank: %d, index: %d\n", indexTimerSend, dest_rank, index);
- */
-    comm_gpu_prepare_isend(send_buf, count, type, timer_send_region[0], dest_rank, &(timer_send_requests[indexTimerSend]), index);
-    indexTimerSend++;
-
-    return 0;
-}
-
-int comm_gpu_prepare_isend(void *send_buf, size_t size, MPI_Datatype type, comm_reg_t *creg,
- int dest_rank, comm_request_t *creq, int index)
-{
-    assert(comm_initialized);
-    int ret = 0;
-    int retcode;
-    size_t nbytes = size*comm_size_of_mpi_type(type);
-    mp_reg_t *reg = (mp_reg_t*)creg;
-    assert(reg);
-    mp_request_t *req = (mp_request_t*)creq;
-    int peer = comm_mpi_rank_to_peer(dest_rank);
-/*
-    if(comm_rank == 0)
-        printf("dest_rank=%d peer=%d nbytes=%d\n", dest_rank, peer, nbytes);
-*/
-    if (!size) {
-        ret = -EINVAL;
-        comm_err("SIZE==0\n");
-        goto err;
-    }
-
-    if (!*reg) {
-        DBG("registering buffer %p\n", send_buf);
-        MP_CHECK(mp_register(send_buf, nbytes, reg));
-    }
-
-    retcode = mp_send_prepare(send_buf, nbytes, peer, reg, req);
-    if (retcode) {
-        // BUG: call mp_unregister
-        comm_err("error in mp_isend_on_stream ret=%d\n", retcode);
-        ret = -1;
-        goto unreg;
-    }
-
-/*
-    if(comm_rank == 0)
-        printf("isend prepare req=%p, index: %d\n", req, index);
-*/
-    retcode = mp::mlx5::get_descriptors(&(pdreqs[indexGpuReqs].tx[index]), req);
-    if (retcode) {
-        comm_err("error in mp_isend_on_stream ret=%d\n", retcode);
-        ret = -1;
-        goto unreg;
-    }
-
-    pdreqs[indexGpuReqs].n_tx++;
-
-    comm_track_request(req);
-
-    return ret;
-
-unreg:
-    // BUG: call mp_unregister
-
-err:
     return ret;
 }
 
@@ -1598,7 +1452,7 @@ int comm_global_wait_all_stream(MPI_Request *request, MPI_Status *status, int co
     else
         ret = MPI_Waitall(count, request, status);
 
-    return ret;
+    return ret;\
 }
 
 void comm_setup_buf_maxsize(int comBufSize)

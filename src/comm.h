@@ -1,23 +1,8 @@
 #pragma once
 
 #ifdef __cplusplus
-#include "mp_device.cuh"
 #include <mpi.h>
-
-struct comm_dev_descs {
-    enum { max_n_descs = 32 };
-    int n_ready;
-    mp::isem32_t ready[max_n_descs];
-
-    int n_tx;
-    mp::mlx5::send_desc_t tx[max_n_descs];
-
-    int n_wait;
-    mp::mlx5::wait_desc_t wait[max_n_descs];
-};
 #endif
-typedef struct comm_dev_descs *comm_dev_descs_t;
-
 
 #define __COMM_CHECK(stmt, cond_str)                    \
     do {                                \
@@ -48,7 +33,7 @@ typedef struct comm_dev_descs *comm_dev_descs_t;
 #define TIMER_SEND_REGION 5
 
 #define MAX_REQS 65536
-#define MAX_REGIONS 80 //26*3
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -123,8 +108,8 @@ extern "C" {
     
 
     double comm_wait_put_value(int rank, double myValue);
-        double comm_min_op_put_value(int numRank, int myRank, double myValue);
-        int comm_put_value(int rank, double *valueToSend, comm_request_t *creq);
+    double comm_min_op_put_value(int numRank, int myRank, double myValue);
+    int comm_put_value(int rank, double *valueToSend, comm_request_t *creq);
     void comm_cleanup_put_table();
 
     void comm_setup_buf_maxsize(int comBufSize);
@@ -132,16 +117,8 @@ extern "C" {
 
     int comm_send_ready_setup(int rank);
     int comm_send_ready_stream_setup(int rank, comm_request_t *creq, cudaStream_t stream);
+    int comm_register_index(void *buf, size_t size, int type, int index);
 
-int comm_register_index(void *buf, size_t size, int type, int index);
-
-//new gpu
-void comm_gpu_update_index();
-struct comm_dev_descs comm_gpu_return_descr();
-int comm_gpu_prepare_isend(void *send_buf, size_t size, MPI_Datatype type, comm_reg_t *creg, int dest_rank, comm_request_t *creq, int index);
-int comm_gpu_prepare_waitall(int count);
-int comm_gpu_irecv(void *recv_buf, int count,  MPI_Datatype type, int src_rank);
-int comm_setup_gpu_prepare_isend(void *send_buf, int count, MPI_Datatype type, int dest_rank, int index);
 #ifdef __cplusplus
 }
 #endif
