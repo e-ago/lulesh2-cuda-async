@@ -130,7 +130,6 @@ static int indexGlobalReady=0;
 
 static int startGlobalReqsIndex=0;
 
-static comm_dev_descs_t pdreqs = NULL;
 static const size_t n_dreqs = 512; //36 prima
 static int dreq_idx = 0;
 
@@ -1122,25 +1121,6 @@ int comm_progress()
     return ret;
 }
 
-
-static struct comm_dev_descs *dreqs()
-{
-    if (!pdreqs) {
-        cudaError_t err;
-        err = cudaHostAlloc(&pdreqs, n_dreqs*sizeof(*pdreqs), 
-                            cudaHostAllocPortable | cudaHostAllocMapped 
-                            /*|cudaHostAllocWriteCombined*/ );
-        if (err != cudaSuccess) {
-            comm_err("error while allocating comm_dev_descs, exiting...\n");
-            exit(-1);
-        }
-        assert(pdreqs);
-        memset(pdreqs, 0, n_dreqs*sizeof(*pdreqs));
-        dreq_idx = 0;
-    }
-    return pdreqs + dreq_idx;
-}
-    
 //MPI_irecv
 int comm_global_irecv(void *buf, int count, MPI_Datatype datatype,
         int source, int tag, MPI_Comm comm, MPI_Request *request, int index, cudaStream_t stream = NULL)
