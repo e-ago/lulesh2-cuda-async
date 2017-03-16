@@ -98,7 +98,6 @@ extern "C" {
     int comm_prepare_isend(void *send_buf, size_t size, MPI_Datatype type, comm_reg_t *creg,
                            int dest_rank, comm_request_t *creq);
     int comm_prepare_wait_all(int count, comm_request_t *creqs);
-    comm_dev_descs_t comm_prepared_requests();
     int comm_register(void *buf, size_t size, int type);
 
     int comm_global_irecv(void *buf, int count, MPI_Datatype datatype,
