@@ -5830,7 +5830,6 @@ int main(int argc, char *argv[])
 
 #if USE_MPI   
 
-
   if(comm_use_comm())
   {
     if(myRank == 0)
@@ -5841,14 +5840,6 @@ int main(int argc, char *argv[])
       if(myRank == 0)
       printf("comm_use_async\n");
     }
-
-    comm_requests_setup(0,0);
-/*
-    comm_requests_setup(MAX_REQS, RECV_REQUEST);      
-    comm_requests_setup(MAX_REQS, SEND_REQUEST);
-    comm_requests_setup(MAX_REQS, SEND_STREAM_REQUEST);
-    comm_requests_setup(MAX_REQS, READY_REQUEST);
-*/
   }
 
    // copy to the host for mpi transfer

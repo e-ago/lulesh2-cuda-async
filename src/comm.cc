@@ -225,7 +225,7 @@ int comm_init(MPI_Comm comm)
     assert(comm_size-1 == n_peers);
     DBG("n_peers=%d\n", n_peers);
 
-    MP_CHECK(mp_init(comm, peers, n_peers));
+    MP_CHECK(mp_init(comm, peers, n_peers, 0));
 #if 0
     // init ready stuff
     size_t table_size = MAX(sizeof(*ready_table) * comm_size, PAGE_SIZE);
@@ -745,50 +745,6 @@ int comm_reset(int type)
     return 1;
 }
 
-int comm_requests_setup(int numReq, int type)
-{
-    #if 0
-    if(comm_rank == 6 && print == 1)
-        printf("COMM SETUP %d REQUESTS TYPE %d\n", numReq, type);
-    #endif
-
-#if 0
-    if(type == RECV_REQUEST)
-    {
-        recv_requests = (comm_request_t *) calloc(numReq, sizeof(comm_request_t));
-        max_recv_request=numReq;
-        curr_recv_request=0;
-    }
-
-    if(type == SEND_REQUEST)
-    {
-        send_requests = (comm_request_t *) calloc(numReq, sizeof(comm_request_t));
-        max_send_request=numReq;
-        curr_send_request=0;
-    }
-
-    if(type == SEND_STREAM_REQUEST)
-    {
-        send_stream_requests = (comm_request_t *) calloc(numReq, sizeof(comm_request_t));
-        max_send_stream_request=numReq;
-        curr_send_stream_request=0;
-    }
-
-    if(type == READY_REQUEST)
-        ready_requests = (comm_request_t *) calloc(numReq, sizeof(comm_request_t));
-#endif
-
-    indexGpuReqs=0;
-    cudaMallocHost((void **)&(pdreqs), n_dreqs*sizeof(comm_dev_descs));
-
-    if(comm_rank == 0)
-        printf("pdreqs alloc n_dreqs: %d\n", n_dreqs);
-
-    //cudaHostAlloc(pdreqs, n_dreqs*sizeof(pdreqs), cudaHostAllocPortable | cudaHostAllocMapped );
-
-    return 1;
-}
-
 #if 1
 int comm_regions_setup(int numReq, int type)
 {
@@ -1185,109 +1141,6 @@ static struct comm_dev_descs *dreqs()
     return pdreqs + dreq_idx;
 }
     
-int comm_prepare_wait_ready(int rank)
-{
-#if 0
-    assert(comm_initialized);
-    assert(rank < comm_size);
-    int ret = 0;
-    int peer = comm_mpi_rank_to_peer(rank);
-    DBG("rank=%d payload=%x n_ready=%d\n", rank, ready_values[rank], dreqs()->n_ready);
-    MP_CHECK(mp::mlx5::get_descriptors(&dreqs()->ready[dreqs()->n_ready++], &ready_table[rank], ready_values[rank]));
-    //dreqs.ready.ptr = &ready_table[rank];
-    //dreqs.ready.value = ready_values[rank];
-    ready_values[rank]++;
-    return ret;
-#endif
-}
-
-int comm_prepare_isend(void *send_buf, size_t size, MPI_Datatype type, comm_reg_t *creg,
-                       int dest_rank, comm_request_t *creq)
-{
-    assert(comm_initialized);
-    int ret = 0;
-    int retcode;
-    size_t nbytes = size*comm_size_of_mpi_type(type);
-    mp_reg_t *reg = (mp_reg_t*)creg;
-    assert(reg);
-    mp_request_t *req = (mp_request_t*)creq;
-    int peer = comm_mpi_rank_to_peer(dest_rank);
-
-    DBG("dest_rank=%d peer=%d nbytes=%d\n", dest_rank, peer, nbytes);
-
-    if (!size) {
-        ret = -EINVAL;
-        comm_err("SIZE==0\n");
-        goto err;
-    }
-
-    if (!*reg) {
-        DBG("registering buffer %p\n", send_buf);
-        MP_CHECK(mp_register(send_buf, nbytes, reg));
-    }
-
-    retcode = mp_send_prepare(send_buf, nbytes, peer, reg, req);
-    if (retcode) {
-        // BUG: call mp_unregister
-        comm_err("error in mp_isend_on_stream ret=%d\n", retcode);
-        ret = -1;
-        goto unreg;
-    }
-
-    retcode = mp::mlx5::get_descriptors(&dreqs()->tx[dreqs()->n_tx++], req);
-    if (retcode) {
-        comm_err("error in mp_isend_on_stream ret=%d\n", retcode);
-        ret = -1;
-        goto unreg;
-    }
-
-    comm_track_request(req);
-
-    return ret;
-
-unreg:
-    // BUG: call mp_unregister
-
-err:
-    return ret;
-}
-
-int comm_prepare_wait_all(int count, comm_request_t *creqs)
-{
-    int retcode;
-    int ret = 0;
-    DBG("count=%d\n", count);
-    assert(comm_initialized);
-    mp_request_t *req = (mp_request_t*)creqs;
-    for (int i=0; i < count; ++i) {
-        retcode = mp::mlx5::get_descriptors(&dreqs()->wait[dreqs()->n_wait++], req+i);
-        if (retcode) {
-            comm_err("error in get_descriptors(wait) (%d)\n", retcode);
-            ret = -1;
-            goto out;
-        }
-    }
-    //memset(creqs, 0, sizeof(comm_request_t)*count);
-out:
-    return ret;
-}
-
-// Note: this is ugly and non thread-safe
-comm_dev_descs_t comm_prepared_requests()
-{
-    comm_dev_descs_t ret;
-    //static struct comm_dev_descs local;
-    // copy dreqs to static storage
-    //memcpy(&local, dreqs(), sizeof(local));
-    // return static storage
-    ret = dreqs();
-    // super ugly
-    dreq_idx = (dreq_idx + 1) % n_dreqs;
-    // reset dreqs for next usage
-    memset(dreqs(), 0, sizeof(struct comm_dev_descs));
-    return ret;
-}
-
 //MPI_irecv
 int comm_global_irecv(void *buf, int count, MPI_Datatype datatype,
         int source, int tag, MPI_Comm comm, MPI_Request *request, int index, cudaStream_t stream = NULL)

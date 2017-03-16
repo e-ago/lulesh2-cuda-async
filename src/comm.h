@@ -56,7 +56,6 @@ extern "C" {
     int comm_test_ready(int rank, int *p_rdy);
 
     int comm_regions_setup(int numReq, int type);
-    int comm_requests_setup(int numReq, int type);
 
     int comm_reset(int type);
 
