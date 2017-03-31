@@ -49,7 +49,9 @@ set -x
 
 echo "CWD=$PWD"
 
-#:<<COMMENT8
+run 0 0 1 0 8 1 1 -s 60 -i 20
+
+:<<COMMENT8
 run 0 0 1 0 8 1 1 -s 60 -i 20  &> out_60_20.txt
 run 0 0 1 0 8 1 1 -s 60 -i 70  &> out_60_70.txt
 run 0 0 1 0 8 1 1 -s 60 -i 100  &> out_60_100.txt
@@ -57,7 +59,7 @@ run 0 0 1 0 8 1 1 -s 60 -i 120  &> out_60_120.txt
 run 0 0 1 0 8 1 1 -s 60 -i 170  &> out_60_170.txt
 run 0 0 1 0 8 1 1 -s 60 -i 200  &> out_60_200.txt
 run 0 0 1 0 8 1 1 -s 60 -i 300  &> out_60_300.txt
-#COMMENT8
+COMMENT8
 
 :<<COMMENT64
 run 0 0 1 0 64 1 1 -s 60 -i 20 &> out_64p_60_20.txt
