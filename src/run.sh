@@ -31,11 +31,11 @@ function run() {
         -x MP_TX_CQ_ON_GPU=0 \
         \
         -x MP_EVENT_ASYNC=0 \
-        -x MP_GUARD_PROGRESS=1 \
+        -x MP_GUARD_PROGRESS=0 \
         -x MP_ENABLE_WARN \
         -x MP_DBREC_ON_GPU=0 \
         \
-        -x GDS_DISABLE_WRITE64=1 -x GDS_SIMULATE_WRITE64=$A -x GDS_DISABLE_INLINECOPY=$B -x GDS_ENABLE_WEAK_CONSISTENCY=$C      -x GDS_DISABLE_MEMBAR=$D           \
+        -x GDS_DISABLE_WRITE64=0 -x GDS_SIMULATE_WRITE64=0 -x GDS_DISABLE_INLINECOPY=0 -x GDS_DISABLE_WEAK_CONSISTENCY=0 -x GDS_DISABLE_MEMBAR=0           \
         --mca btl_openib_want_cuda_gdr 1 --map-by node -np $NP -mca btl_openib_warn_default_gid_prefix 0 $PREFIX/src/lulesh2-cuda-async/src/wrapper.sh $PREFIX/src/lulesh2-cuda-async/src/lulesh $PAR ) 2>&1 | tee -a run.log
 
 #-mca btl_openib_warn_default_gid_prefix 0
