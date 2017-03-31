@@ -36,7 +36,7 @@ function run() {
         -x MP_DBREC_ON_GPU=0 \
         \
         -x GDS_DISABLE_WRITE64=1 -x GDS_SIMULATE_WRITE64=$A -x GDS_DISABLE_INLINECOPY=$B -x GDS_ENABLE_WEAK_CONSISTENCY=$C      -x GDS_DISABLE_MEMBAR=$D           \
-        --mca btl_openib_want_cuda_gdr 1 --map-by node -np $NP -mca btl_openib_warn_default_gid_prefix 0 $PREFIX/src/scripts/wrapper.sh $PREFIX/src/lulesh-cuda-async/src/lulesh $PAR ) 2>&1 | tee -a run.log
+        --mca btl_openib_want_cuda_gdr 1 --map-by node -np $NP -mca btl_openib_warn_default_gid_prefix 0 $PREFIX/src/lulesh2-cuda-async/src/wrapper.sh $PREFIX/src/lulesh2-cuda-async/src/lulesh $PAR ) 2>&1 | tee -a run.log
 
 #-mca btl_openib_warn_default_gid_prefix 0
 #--mca btl_openib_want_cuda_gdr 1
