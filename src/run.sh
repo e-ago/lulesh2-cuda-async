@@ -1,4 +1,6 @@
-n run() {
+#!/bin/bash
+
+function run() {
     local A=$1
     local B=$2
     local C=$3
