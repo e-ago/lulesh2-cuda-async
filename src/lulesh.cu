@@ -88,7 +88,7 @@ Additional BSD Notice
 static int globalRank=0;
 static int totIters=0;
 static int currIter=0;
-
+static int gpuID=0;
 /****************************************************/
 /* Allow flexibility for arithmetic representations */
 /****************************************************/
@@ -285,7 +285,8 @@ void cuda_init(int rank)
         exit(1);
     }
 
-    dev = rank % deviceCount;
+    //dev = rank % deviceCount;
+    dev = comm_select_device(rank);
 
     if ((dev < 0) || (dev > deviceCount-1)) {
         fprintf(stderr, "cuda_init(): requested device (%d) out of range [%d,%d]\n",
@@ -314,6 +315,7 @@ void cuda_init(int rank)
    exit(1);
 #endif
 
+   gpuID = dev;
 }
 
 void AllocateNodalPersistent(Domain* domain, size_t domNodes)
@@ -5807,8 +5809,7 @@ int main(int argc, char *argv[])
 
   //ASYNC
   if(comm_use_comm())
-    comm_init(MPI_COMM_WORLD);
-
+    comm_init(MPI_COMM_WORLD, gpuID);
 
   /* assume cube subdomain geometry for now */
   Index_t nx = atoi(argv[2]);

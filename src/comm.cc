@@ -47,6 +47,7 @@ static int         n_peers = -1;
 static const int   bad_peer = -1;
 static int         comm_size;
 static int         comm_rank;
+static int         comm_gpu_id=0;
 
 // tables are indexed by rank, not peer
 static uint32_t   *ready_table;
@@ -224,7 +225,12 @@ int comm_init(MPI_Comm comm)
     assert(comm_size-1 == n_peers);
     DBG("n_peers=%d\n", n_peers);
 
-    MP_CHECK(mp_init(comm, peers, n_peers, 0));
+    //CUDA context initialization
+    //cudaFree(0);
+    comm_gpu_id=gpuId;
+    mp_setup_gpu_id(comm_gpu_id);
+    MP_CHECK(mp_init(comm, peers, n_peers, MP_INIT_DEFAULT));
+
 #if 0
     // init ready stuff
     size_t table_size = MAX(sizeof(*ready_table) * comm_size, PAGE_SIZE);
@@ -1126,19 +1132,6 @@ int comm_global_irecv(void *buf, int count, MPI_Datatype datatype,
         int source, int tag, MPI_Comm comm, MPI_Request *request, int index, cudaStream_t stream = NULL)
 {
     int ret=0;
-#if 0
-    if(comm_rank == 6 && print == 1)
-    {
-       if(datatype == MPI_DOUBLE)
-            printf("Recv from %d, index req: %d byte: %d sizeof(DOUBLE): %d\n",
-             source, index, 8*count, sizeof(datatype));
-
-        if(datatype == MPI_FLOAT)
-            printf("Recv from %d, index req: %d byte: %d sizeof(FLOAT): %d\n",
-             source, index, 4*count, sizeof(datatype));
-
-    }
-#endif
 
     if(comm_use_comm())
     {
@@ -1161,20 +1154,6 @@ int comm_global_irecv(void *buf, int count, MPI_Datatype datatype,
 int comm_global_isend(void *buf, int count, MPI_Datatype datatype, int dest,
     int tag, MPI_Comm comm, MPI_Request *request, int index)
 {
-
-#if 0
-    if(comm_rank == 6 && print == 1)
-    {
-        if(datatype == MPI_DOUBLE)
-            printf("Send to %d, index req: %d byte: %d sizeof(DOUBLE): %d\n",
-             dest, index, 8*count, sizeof(datatype));
-
-        if(datatype == MPI_FLOAT)
-            printf("Send to %d, index req: %d byte: %d sizeof(FLOAT): %d\n",
-             dest, index, 4*count, sizeof(datatype));
-
-    }
-#endif
     int ret=0;
     if(comm_use_comm())
     {
@@ -1311,4 +1290,28 @@ void comm_register_step(void * buf, int type)
         comm_register(buf, maxBufSize, SEND_REQUEST);
     }
         
+}
+
+//DGX helper
+int comm_select_device(int mpiRank)
+{
+    int numDevices=0;
+    int gpuId=0;
+
+//DGX: required all 8 GPUs
+#if 0
+    char * value = getenv("USE_GPU"); 
+    if (value != NULL) {
+        gpuId = atoi(value);
+        //DBG("USE_GPU: %d\n", gpuId);
+    }
+    else
+    {
+#endif
+        // query number of GPU devices in the system
+        cudaGetDeviceCount(&numDevices);
+        gpuId = mpiRank % numDevices;
+//    }
+
+    return gpuId;
 }

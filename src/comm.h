@@ -47,7 +47,7 @@ extern "C" {
     typedef struct comm_request  *comm_request_t;
     typedef struct comm_reg      *comm_reg_t;
     typedef struct CUstream_st   *comm_stream_t;
-    int comm_init(MPI_Comm comm);
+    int comm_init(MPI_Comm comm, int gpuId);
     void comm_finalize();
     int comm_send_ready_on_stream(int rank, comm_request_t *creq, comm_stream_t stream);
     int comm_send_ready(int rank, comm_request_t *creq);
@@ -116,6 +116,7 @@ extern "C" {
     int comm_send_ready_setup(int rank);
     int comm_send_ready_stream_setup(int rank, comm_request_t *creq, cudaStream_t stream);
     int comm_register_index(void *buf, size_t size, int type, int index);
+    int comm_select_device(int mpiRank);
 
 #ifdef __cplusplus
 }
