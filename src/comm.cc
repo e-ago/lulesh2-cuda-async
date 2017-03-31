@@ -200,7 +200,7 @@ int comm_use_async()
     return use_async;
 }
 
-int comm_init(MPI_Comm comm)
+int comm_init(MPI_Comm comm, int gpuId)
 {
     int i, j;
 
