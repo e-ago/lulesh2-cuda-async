@@ -1628,12 +1628,12 @@ void CommSBNGpu(Domain& domain, int xferFields, Domain_member *fieldData, cudaSt
 
 POP_RANGE;
 
-    ////printf("\n***myRank: %d CommSBNGpu END: %d wait***\n", myRank, pmsg+emsg+cmsg);
+    printf("\n***myRank: %d CommSBNGpu END: %d wait***\n", myRank, pmsg+emsg+cmsg);
 
    // don't need to call synchronize since it will be done automatically 
    // before kernels start to execute in NULL stream
    //debug
-   //cudaDeviceSynchronize();
+   cudaDeviceSynchronize();
 }
 
 /******************************************/
