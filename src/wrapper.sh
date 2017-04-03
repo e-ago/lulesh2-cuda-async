@@ -33,7 +33,8 @@ case ${HOSTNAME} in
 #       fi
         #MLX_NUM=$(($lrank * 2 ))
         #HCA=mlx5_${MLX_NUM}
-        HCA=mlx5_${lrank}
+        HCA=mlx5_$(($lrank / 4))
+#        HCA=mlx5_${lrank}
         MP_USE_IB_HCA=${HCA}
         OMPI_MCA_btl_openib_if_include=${HCA}
         ;;
