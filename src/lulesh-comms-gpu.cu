@@ -419,8 +419,7 @@ void CommSendGpu(Domain& domain, int msgType,
 
    MPI_Comm_rank(MPI_COMM_WORLD, &myRank) ;
 
-   //if(myRank == 0)
-   // //printf("\n***CommSendGpu***\n");
+   if(myRank == 0) printf("\n***CommSendGpu***\n");
 
    // setup launch grid
    const int block = 128;
@@ -1228,10 +1227,9 @@ void CommSBNGpu(Domain& domain, int xferFields, Domain_member *fieldData, cudaSt
 
    MPI_Comm_rank(MPI_COMM_WORLD, &myRank) ;
 
- // if(myRank == 0)
-  //  //printf("\n***CommSBNGpu***\n");
+  if(myRank == 0) printf("\n***CommSBNGpu***\n");
   
-PUSH_RANGE("CommSBNGpu", 1);
+  PUSH_RANGE("CommSBNGpu", 1);
 
    if (planeMin | planeMax) {
       /* ASSUMING ONE DOMAIN PER RANK, CONSTANT BLOCK SIZE HERE */
@@ -1698,10 +1696,9 @@ void CommSyncPosVelGpu(Domain& domain, cudaStream_t *streams, int typeBuf) {
    cudaStream_t stream;
 
    MPI_Comm_rank(MPI_COMM_WORLD, &myRank) ;
-PUSH_RANGE("CommSyncPosVelGpu", 2);
+  PUSH_RANGE("CommSyncPosVelGpu", 2);
 
-      // if(myRank == 0)
-   // //printf("\n***CommSyncPosVelGpu***\n");
+  if(myRank == 0) printf("\n***CommSyncPosVelGpu***\n");
 
 
    if (planeMin | planeMax) {
@@ -2214,9 +2211,8 @@ void CommMonoQGpu(Domain& domain, cudaStream_t stream, int typeBuf)
    MPI_Comm_rank(MPI_COMM_WORLD, &myRank) ;
 
 
-PUSH_RANGE("CommMonoQGpu", 3);
-//if(myRank == 0)
-//    //printf("\n *** CommMonoQGpu start ***\n");
+  PUSH_RANGE("CommMonoQGpu", 3);
+  if(myRank == 0) printf("\n *** CommMonoQGpu start ***\n");
 
    if (planeMin | planeMax) {
       /* ASSUMING ONE DOMAIN PER RANK, CONSTANT BLOCK SIZE HERE */
