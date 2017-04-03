@@ -5807,9 +5807,14 @@ int main(int argc, char *argv[])
   cuda_init(myRank);
 
 
+printf("MyRank: %d, gpuID: %d\n", myRank, gpuID);
+
   //ASYNC
   if(comm_use_comm())
+  {
+    printf("Calling comm_init\n");
     comm_init(MPI_COMM_WORLD, gpuID);
+  }
 
   /* assume cube subdomain geometry for now */
   Index_t nx = atoi(argv[2]);
