@@ -1261,7 +1261,7 @@ int comm_global_wait_stream(MPI_Request *request, MPI_Status *status, int type, 
         comm_wait_setup(type, index);
     else
     {
-        printf("MPI_Wait GPU\n");
+        printf("MPI_Wait GPU, %d\n", index);
         ret = MPI_Wait(request, status);
     }
 
