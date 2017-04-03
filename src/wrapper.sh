@@ -21,7 +21,7 @@ case ${HOSTNAME} in
         # GPU #0,2,4,6
         # HCA #0,1,2,3
         #if (( $lrank > 4 )); then echo "too many ranks"; exit; fi
-        hlrank=$(($lrank / 2)) # 0,1
+        hlrank=$(($lrank / 4)) # 0,1
         dlrank=$(($lrank))  # 4)) # 0,2,4,6
         CUDA_VISIBLE_DEVICES=$dlrank
 #       USE_GPU=${dlrank}

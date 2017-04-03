@@ -231,6 +231,7 @@ int comm_init(MPI_Comm comm, int gpuId)
     assert(comm_size-1 == n_peers);
     DBG("n_peers=%d\n", n_peers);
 
+    printf("Rank: %d, GPU: %d\n", comm_rank, gpuId);
     //CUDA context initialization
     cudaFree(0);
     MP_CHECK(mp_init(comm, peers, n_peers, MP_INIT_DEFAULT, gpuId));
@@ -1139,6 +1140,7 @@ int comm_global_irecv(void *buf, int count, MPI_Datatype datatype,
 
     if(comm_use_comm())
     {
+        printf("USE COMM RECV\n");
         ret = comm_irecv_setup(buf, count, datatype, source, index);
     /*
         if(comm_use_async())
@@ -1149,7 +1151,11 @@ int comm_global_irecv(void *buf, int count, MPI_Datatype datatype,
            // comm_send_ready_setup(source);
     }
     else
+    {
+                printf("USE MPI RECV\n");
+
         ret = MPI_Irecv(buf, count, datatype, source, tag, comm, request);
+    }
 
     return ret;
 }
