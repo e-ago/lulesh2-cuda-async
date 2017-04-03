@@ -5853,13 +5853,19 @@ printf("MyRank: %d, gpuID: %d\n", myRank, gpuID);
 
    fieldData = &Domain::get_nodalMass;
 
+printf("Primo CommRecv\n");
    // Initial domain boundary communication 
    CommRecv(*locDom, MSG_COMM_SBN, 1,
             locDom->sizeX + 1, locDom->sizeY + 1, locDom->sizeZ + 1,
             true, false, 0) ;
+printf("Primo CommSend\n");
+
    CommSend(*locDom, MSG_COMM_SBN, 1, &fieldData,
             locDom->sizeX + 1, locDom->sizeY + 1, locDom->sizeZ + 1,
             true, false, 0) ;
+
+   printf("Primo CommSBN\n");
+
    CommSBN(*locDom, 1, &fieldData, 0) ;
 
    // copy back to the device

@@ -1167,11 +1167,17 @@ int comm_global_isend(void *buf, int count, MPI_Datatype datatype, int dest,
     int ret=0;
     if(comm_use_comm())
     {
+                printf("USE COMM SEND\n");
+
         //comm_wait_ready(dest);
         ret = comm_isend_setup(buf, count, datatype, dest, index);        
     }
     else
+    {
+                        printf("USE MPI RECV\n");
+
         ret = MPI_Isend(buf, count, datatype, dest, tag, comm, request);
+    }
 
     return ret;
 }
