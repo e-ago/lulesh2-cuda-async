@@ -461,26 +461,9 @@ Domain::SetupCommBuffers(Int_t edgeNodes)
     if(myRank == 0)
       printf("\n***comBufSize: %d totSize: %d***\n", comBufSize, comBufSize*sizeof(Real_t));
 
-#if 0
-    comm_setup_buf_maxsize(comBufSize*sizeof(Real_t));
-    comm_regions_setup(1, SEND_REQUEST);
-    comm_regions_setup(1, RECV_REQUEST);
-    //if(comm_use_async())
-    //  comm_regions_setup(0, SEND_STREAM_REGION);
-
-    cudaMallocHost((void **)&(this->commDataSend), comBufSize*sizeof(Real_t));
-    comm_register(this->commDataSend, comBufSize*sizeof(Real_t), SEND_REQUEST);
-   
-    //comm_register(this->commDataSend, comBufSize*sizeof(Real_t), SEND_STREAM_REQUEST);
-    
-    cudaMallocHost( (void **)&(this->commDataRecv), comBufSize*sizeof(Real_t) );
-    comm_register(this->commDataRecv, comBufSize*sizeof(Real_t), RECV_REQUEST);
-#endif
-
-  comm_regions_setup(26*3, SEND_REGION);
-  comm_regions_setup(26*3, SEND_STREAM_REGION);
-  comm_regions_setup(26*3, RECV_REGION);
-
+    comm_regions_setup(26*3, SEND_REGION);
+    comm_regions_setup(26*3, SEND_STREAM_REGION);
+    comm_regions_setup(26*3, RECV_REGION);
 
 #if 1
     for(int typeBuf=0; typeBuf < 3; typeBuf++)
@@ -514,43 +497,17 @@ Domain::SetupCommBuffers(Int_t edgeNodes)
     comm_register_index(this->timerRecvBuf, (numPeers+1)*sizeof(Real_t), TIMER_RECV_REGION, 0);
     comm_register_index(this->timerSendBuf, (numPeers+1)*sizeof(Real_t), TIMER_SEND_REGION, 0);
   }
+
   else
   {
 
     for(int ind=0; ind<26; ind++)
     {
+      cudaMallocHost((void **)&(this->commDataSend_multi[ind+(typeBuf*26)]), comBufSize*sizeof(Real_t));
+      memset(this->commDataSend_multi[ind+(typeBuf*26)], 0, comBufSize*sizeof(Real_t)) ;
 
-#if 0
-      this->commDataSend = new Real_t[comBufSize] ;
-      this->commDataRecv_multi = new Real_t[comBufSize] ;
-
-      // pin buffers
-      cudaHostRegister(this->commDataSend, comBufSize*sizeof(Real_t), 0);
-      cudaHostRegister(this->commDataRecv, comBufSize*sizeof(Real_t), 0);
-
-      // prevent floating point exceptions 
-      memset(this->commDataSend, 0, comBufSize*sizeof(Real_t)) ;
-      memset(this->commDataRecv, 0, comBufSize*sizeof(Real_t)) ;
-#endif
-
-      cudaMallocHost((void **)&(this->commDataSend_multi[ind]), comBufSize*sizeof(Real_t));
-      comm_regions_setup(ind, SEND_REQUEST);
-      comm_register_index(this->commDataSend_multi[ind], comBufSize*sizeof(Real_t), SEND_REQUEST, ind);
-      memset(this->commDataSend_multi[ind], 0, comBufSize*sizeof(Real_t)) ;
-
-/*
-      if(comm_use_async())
-      {
-        cudaMallocHost((void **)&(this->commDataSendStream_multi[ind]), comBufSize*sizeof(Real_t));
-        comm_regions_setup(ind, SEND_REQUEST);
-        comm_register_index(this->commDataSendStream_multi[ind], comBufSize*sizeof(Real_t), SEND_STREAM_REQUEST, ind);
-        memset(this->commDataSendStream_multi[ind], 0, comBufSize*sizeof(Real_t)) ;
-      }
-*/
-      cudaMallocHost((void **)&(this->commDataRecv_multi[ind]), comBufSize*sizeof(Real_t));
-      comm_regions_setup(ind, RECV_REQUEST);
-      comm_register_index(this->commDataRecv_multi[ind], comBufSize*sizeof(Real_t),RECV_REQUEST, ind);
-      memset(this->commDataRecv_multi[ind], 0, comBufSize*sizeof(Real_t)) ;
+      cudaMallocHost((void **)&(this->commDataRecv_multi[ind+(typeBuf*26)]), comBufSize*sizeof(Real_t));
+      memset(this->commDataRecv_multi[ind+(typeBuf*26)], 0, comBufSize*sizeof(Real_t)) ;
     }
 
 #if 0
