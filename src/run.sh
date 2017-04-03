@@ -13,7 +13,14 @@ function run() {
     date
     (   
         echo; \
-        mpirun  \
+        
+        extra_params="$extra_params --mca btl openib,self"
+        extra_params="$extra_params --mca btl_openib_want_cuda_gdr 1"
+        extra_params="$extra_params --mca btl_openib_warn_default_gid_prefix 0"
+        extra_params="$extra_params --mca btl_openib_verbose 1"
+
+
+        mpirun $extra_params  \
         \
         -x COMM_ENABLE_DEBUG=0 \
         -x COMM_USE_COMM=$COMM  -x COMM_USE_ASYNC=$ASYNC   -x COMM_USE_GPU_COMM=0 -x COMM_USE_GDRDMA \
@@ -36,7 +43,7 @@ function run() {
         -x MP_DBREC_ON_GPU=0 \
         \
         -x GDS_DISABLE_WRITE64=0 -x GDS_SIMULATE_WRITE64=0 -x GDS_DISABLE_INLINECOPY=0 -x GDS_DISABLE_WEAK_CONSISTENCY=0 -x GDS_DISABLE_MEMBAR=0           \
-        --mca btl_openib_want_cuda_gdr 1 --map-by node -np $NP -mca btl_openib_warn_default_gid_prefix 0 $PREFIX/src/lulesh2-cuda-async/src/wrapper.sh $PREFIX/src/lulesh2-cuda-async/src/lulesh $PAR ) 2>&1 | tee -a run.log
+        --map-by node -np $NP $PREFIX/src/lulesh2-cuda-async/src/wrapper.sh $PREFIX/src/lulesh2-cuda-async/src/lulesh $PAR ) 2>&1 | tee -a run.log
 
 #-mca btl_openib_warn_default_gid_prefix 0
 #--mca btl_openib_want_cuda_gdr 1
