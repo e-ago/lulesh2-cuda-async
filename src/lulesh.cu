@@ -465,7 +465,6 @@ Domain::SetupCommBuffers(Int_t edgeNodes)
     comm_regions_setup(26*3, SEND_STREAM_REGION);
     comm_regions_setup(26*3, RECV_REGION);
 
-#if 1
     for(int typeBuf=0; typeBuf < 3; typeBuf++)
     {
       for(int ind=0; ind<26; ind++)
@@ -483,7 +482,6 @@ Domain::SetupCommBuffers(Int_t edgeNodes)
         memset(this->commDataRecv_multi[ind+(typeBuf*26)], 0, comBufSize*sizeof(Real_t)) ;
       }
     }
-#endif
 
     if(globalRank == 0)
       printf("Alloc timer buffers numPeers+1: %d\n", numPeers);
@@ -501,15 +499,17 @@ Domain::SetupCommBuffers(Int_t edgeNodes)
   else
   {
 
-    for(int ind=0; ind<26; ind++)
+    for(int typeBuf=0; typeBuf < 3; typeBuf++)
     {
-      cudaMallocHost((void **)&(this->commDataSend_multi[ind+(typeBuf*26)]), comBufSize*sizeof(Real_t));
-      memset(this->commDataSend_multi[ind+(typeBuf*26)], 0, comBufSize*sizeof(Real_t)) ;
+      for(int ind=0; ind<26; ind++)
+      {
+        cudaMallocHost((void **)&(this->commDataSend_multi[ind+(typeBuf*26)]), comBufSize*sizeof(Real_t));
+        memset(this->commDataSend_multi[ind+(typeBuf*26)], 0, comBufSize*sizeof(Real_t)) ;
 
-      cudaMallocHost((void **)&(this->commDataRecv_multi[ind+(typeBuf*26)]), comBufSize*sizeof(Real_t));
-      memset(this->commDataRecv_multi[ind+(typeBuf*26)], 0, comBufSize*sizeof(Real_t)) ;
+        cudaMallocHost((void **)&(this->commDataRecv_multi[ind+(typeBuf*26)]), comBufSize*sizeof(Real_t));
+        memset(this->commDataRecv_multi[ind+(typeBuf*26)], 0, comBufSize*sizeof(Real_t)) ;
+      }
     }
-
 #if 0
     this->commDataSend = new Real_t[comBufSize] ;
     this->commDataRecv = new Real_t[comBufSize] ;
