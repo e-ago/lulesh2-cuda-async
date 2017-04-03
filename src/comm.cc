@@ -1221,7 +1221,6 @@ int comm_global_isend_stream(void *buf, int count, MPI_Datatype datatype, int de
     {
         //comm_wait_ready_on_stream(dest, stream);
         ret = comm_isend_stream_setup(buf, count, datatype, dest, stream, index);
-//        cudaDeviceSynchronize();
     }
     else if(comm_use_comm())
     {
@@ -1232,6 +1231,7 @@ int comm_global_isend_stream(void *buf, int count, MPI_Datatype datatype, int de
     else
     {
         cudaStreamSynchronize(stream);
+        printf("MPI_Isend GPU\n");
         ret = MPI_Isend(buf, count, datatype, dest, tag, comm, request);
     }
         
@@ -1260,7 +1260,10 @@ int comm_global_wait_stream(MPI_Request *request, MPI_Status *status, int type, 
     else if(comm_use_comm())
         comm_wait_setup(type, index);
     else
+    {
+        printf("MPI_Wait GPU\n");
         ret = MPI_Wait(request, status);
+    }
 
     return ret;
 }
