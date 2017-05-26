@@ -38,7 +38,6 @@ function run() {
         -x MP_TX_CQ_ON_GPU=0 \
         \
         -x MP_EVENT_ASYNC=0 \
-        -x MP_GUARD_PROGRESS=0 \
         -x MP_ENABLE_WARN \
         -x MP_DBREC_ON_GPU=0 \
         \
